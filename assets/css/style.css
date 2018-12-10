@@ -1,21 +1,63 @@
-.col{
-	
-}
-.row{
-	
-}
 .btn{
 	margin: 10px;
 	width: 120px;
 }
+
 .imageHover{
 	padding: 0px;
-/* 	margin: 20px; */
 	float: inherit;
+	max-width: 240px;
 }
 .my-div{
 	position: relative;
 	float: left;
 	margin: 10px;
 	overflow: auto;
+}
+.my-favorites{
+	border: black;
+	border-width: 1px;
+	border-style: dotted hidden dotted hidden;
+}
+
+
+@media screen and (min-width: 0px) and (max-width: 600px) {
+
+	#buttons-view { display: none;}
+	#buttons-toggle { display: block;}
+	
+	.col-lg-3{
+		margin-left:auto;
+		margin-right:auto;
+		display:block;
+	}
+	.imageHover{
+		max-width: 240px;
+	}
+	#movie-form{
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.my-stats{
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+	.form-holder{
+		text-align: center;
+	}
+	.more{
+		margin-left: auto;
+		margin-right: auto;
+		display:block;
+	}
+	.my-favorites{
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+@media screen and (min-width: 601px) {
+  	#buttons-view { display: block;}
+	#buttons-toggle { display: none;}
 }

@@ -1,14 +1,14 @@
 	var theOffset = 0;
+	var thePokemon = "";
 	var movies= ["Bulbasaur","Ivysaur","Venusaur","Charmander","Charmeleon","Charizard","Squirtle","Wartortle","Blastoise","Caterpie","Metapod","Butterfree","Weedle","Kakuna","Beedrill","Pidgey","Pidgeotto","Pidgeot","Rattata","Raticate","Spearow","Fearow","Ekans","Arbok","Pikachu"];
 
 	function displayMovieInfo(){
 		$("#theDiv").empty();
-		$('.more').remove();
 		$('.my-stats').remove()
 		theOffset = 0;
 		var queryURL = "https://api.giphy.com/v1/gifs/search?q="+$(this).attr("data-name")+"&api_key=dc6zaTOxFJmzC&limit=10";
 		var theItem = $(this).attr("data-name");
-		
+		thePokemon = theItem;
 		ajaxRequest(queryURL, theItem);
 		
 		var queryURL = "https://pokeapi.co/api/v2/pokemon/"+$(this).attr("data-name").toLowerCase()+"/";
@@ -47,7 +47,6 @@
 	}
 	
 	function ajaxRequest(queryURL, theItem){
-		$(".more").remove();
 		$.ajax({
 				url: queryURL,
 				method: "GET"
@@ -59,6 +58,7 @@
 					theImage.attr("data-still", response.data[key].images.original_still.url);        
 					theImage.attr("data-gif", response.data[key].images.original.url);        
 					theImage.addClass("imageHover");
+					theImage.attr("alt", response.data[key].title);
 					theImage.height(200);    
 					var myDiv = $("<div>");
 					myDiv.addClass("my-div");
@@ -66,16 +66,21 @@
 					myDiv.append(theImage);
 					$("#theDiv").append(myDiv);
 				}
-				$(".imageHover").on("mouseover", function(){
-					var theImageHTML = $(this).attr("data-gif");
-					$(this).attr( "src", theImageHTML);        
+				$(".imageHover").unbind("click");
+				$(".imageHover").on("click", function(){
+					
+					if($(this).attr("src")===$(this).attr("data-gif"))
+					{
+						var theImageHTML = $(this).attr("data-still");
+						$(this).attr( "src", theImageHTML)
+					}
+					else{
+						var theImageHTML = $(this).attr("data-gif");
+					$(this).attr( "src", theImageHTML);  
+					}
 				});
-				$(".imageHover").on("mouseout", function(){
-					var theImageHTML = $(this).attr("data-still");
-					$(this).attr( "src", theImageHTML);        
-				});
-				$(".imageHover").on("click", function(event) {	
-	/*
+				$(".imageHover").unbind("dblclick");
+				$(".imageHover").on("dblclick", function(){
 					var theImage =$("<img>");
 					theImage.attr( "src", $(this).attr("data-still"));
 					theImage.attr("data-still", $(this).attr("data-still"));        
@@ -85,27 +90,23 @@
 					var myDiv = $("<div>");
 					myDiv.addClass("my-div");
 					myDiv.append(theImage);
-					$(".my-favorites").append(myDiv);
+					$(".my-favorites").prepend(myDiv);
 					
-					$(".imageHover").on("mouseover", function(){
-						var theImageHTML = $(this).attr("data-gif");
-						$(this).attr( "src", theImageHTML);        
+					$(".imageHover").unbind("click");
+					$(".imageHover").on("click", function(){
+						
+						if($(this).attr("src")===$(this).attr("data-gif"))
+						{
+							var theImageHTML = $(this).attr("data-still");
+							$(this).attr( "src", theImageHTML)
+						}
+						else{
+							var theImageHTML = $(this).attr("data-gif");
+						$(this).attr( "src", theImageHTML);  
+						}
 					});
-					$(".imageHover").on("mouseout", function(){
-						var theImageHTML = $(this).attr("data-still");
-						$(this).attr( "src", theImageHTML);        
-					});
-	*/				
-				});
-				var a = $("<button>");
-				a.addClass("more");
-				a.addClass("btn btn-primary");
-				a.attr("data-name", $(this));
-				a.text("Load More");
-				$(".col-lg-3").append(a);
-				$(".more").on("click", function(event) {
-					theOffset +=10;
-					loadMore(theItem);
+					localStorage["myKey"] = JSON.stringify($(".my-favorites").html());
+					$(".clear-favorites").show();
 				});
 			});		
 	}
@@ -131,4 +132,51 @@
 	});
 	$(document).ready(function() {
 		renderButtons();
+		var a = $("<button>");
+		a.addClass("more");
+		a.addClass("btn btn-primary");
+		a.attr("data-name", $(this));
+		a.text("Load More");
+		$("#movie-form").append(a);
+		$(".more").on("click", function(event) {
+			event.preventDefault();
+			theOffset +=10;
+			loadMore(thePokemon);
+		});
+		var a = $("<button>");
+		a.addClass("hide-buttons");
+		a.addClass("btn btn-primary");
+		a.attr("data-name", $(this));
+		a.text("Expand");
+		$("#buttons-toggle").append(a);
+		$(".hide-buttons").on("click", function(event) {
+			console.log($(".hide-buttons").text());
+			event.preventDefault();
+			if($(".hide-buttons").text()==="Expand"){
+				$("#buttons-view").css("display", "block");
+				$(".hide-buttons").text("Collapse");
+			}
+			else{
+				$("#buttons-view").css("display", "none");
+				$(".hide-buttons").text("Expand");
+			}
+		});
+		var a = $("<button>");
+		a.addClass("clear-favorites");
+		a.addClass("btn btn-primary");
+		a.attr("data-name", $(this));
+		a.text("Clear");
+		$(".clear-favorites-div").append(a);
+		$(".clear-favorites").hide();
+		if (localStorage["myKey"] != null) {
+	    	var contentsOfOldDiv = JSON.parse(localStorage["myKey"]);    
+			$(".my-favorites").html(contentsOfOldDiv);
+			$(".clear-favorites").show();
+			console.log("favorites exist");
+	    } 
+	    $(".clear-favorites").on("click", function(event) {
+			localStorage.clear();
+			$(".my-favorites").empty();
+			$(".clear-favorites").hide();
+		});
 	});
