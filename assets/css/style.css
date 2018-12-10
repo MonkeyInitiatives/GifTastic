@@ -19,12 +19,33 @@
 	border-width: 1px;
 	border-style: dotted hidden dotted hidden;
 }
+.col-lg-9{
+	grid-area: gifArea;
+}
+.col-lg-3{
+	grid-area: otherArea;
+}
 
+/*
+.grid-row {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-areas:
+     "gifArea otherArea"
 
+  }
+*/
 @media screen and (min-width: 0px) and (max-width: 600px) {
 
 	#buttons-view { display: none;}
 	#buttons-toggle { display: block;}
+	.grid-row  {
+		display: grid;
+	    grid-gap: 1em;
+	    grid-template-areas:
+	     "gifArea"
+	     "otherArea"
+     }
 	
 	.col-lg-3{
 		margin-left:auto;
