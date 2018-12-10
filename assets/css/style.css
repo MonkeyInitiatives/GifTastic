@@ -1,6 +1,19 @@
+@font-face {
+    font-family: 'POKEMON';
+    src: url('../fonts/pokemon.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+  color: black;
+  font-family: POKEMON;
+  letter-spacing: 2px;
+}
+
 .btn{
 	margin: 10px;
-	width: 120px;
+	width: 125px;
 }
 
 .imageHover{
@@ -35,7 +48,7 @@
 
   }
 */
-@media screen and (min-width: 0px) and (max-width: 600px) {
+@media screen and (min-width: 0px) and (max-width: 768px) {
 
 	#buttons-view { display: none;}
 	#buttons-toggle { display: block;}
@@ -58,7 +71,7 @@
 		display:block;
 	}
 	.imageHover{
-		max-width: 240px;
+		max-width: 260px;
 	}
 	#movie-form{
 		margin-left: auto;
@@ -106,7 +119,7 @@
 	}
 	
 }
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 769px) {
   	#buttons-view { display: block;}
 	#buttons-toggle { display: none;}
 }
