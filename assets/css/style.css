@@ -4,43 +4,10 @@
     font-weight: normal;
     font-style: normal;
 }
-
 *{
-  color: black;
-  font-family: POKEMON;
-  letter-spacing: 2px;
-}
-
-.btn{
-	margin: 10px;
-	width: 125px;
-}
-
-.my-div .downloadButton {
-  position: absolute;
-  top: 90%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 16px;
-  text-align: center;
-  padding: 5px;
-}
-
-.imageHover{
-	padding: 0px;
-	float: inherit;
-	max-width: 240px;
-}
-.my-div{
-	position: relative;
-	float: left;
-	margin: 10px;
-	overflow: auto;
-}
-.my-favorites{
-	border: black;
-	border-width: 1px;
-	border-style: dotted hidden dotted hidden;
+	color: black;
+	font-family: POKEMON;
+	letter-spacing: 2px;
 }
 .col-lg-9{
 	grid-area: gifArea;
@@ -48,16 +15,44 @@
 .col-lg-3{
 	grid-area: otherArea;
 }
-#movie-input{
+.btn{
+	margin: 10px;
+	width: 125px;
+}
+.image-div{
+	position: relative;
+	float: left;
+	margin: 10px;
+	overflow: auto;
+}
+.image-div .downloadButton {
+	position: absolute;
+	top: 90%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 16px;
+	text-align: center;
+	padding: 5px;
+}
+.image-hover{
+	padding: 0px;
+	float: inherit;
+	max-width: 240px;
+}
+.my-favorites{
+	border: black;
+	border-width: 1px;
+	border-style: dotted hidden dotted hidden;
+}
+#pokemonInput{
 	border: black;
 	border-width: 1px;
 	border-style: solid;
 }
 
 @media screen and (min-width: 0px) and (max-width: 768px) {
-
-	#buttons-view { display: none;}
-	#buttons-toggle { display: block;}
+	#buttonsView { display: none;}
+	#buttonsToggle { display: block;}
 	.grid-row  {
 		display: grid;
 	    grid-gap: 1em;
@@ -65,7 +60,6 @@
 	     "gifArea"
 	     "otherArea"
      }
-	
 	.col-lg-3{
 		margin-left:auto;
 		margin-right:auto;
@@ -76,12 +70,23 @@
 		margin-right:auto;
 		display:block;
 	}
-	.imageHover{
-		max-width: 260px;
-	}
-	#movie-form{
+	.image-div{
 		margin-left: auto;
 		margin-right: auto;
+		text-align: center;
+	}
+	.image-hover{
+		max-width: 260px;
+	}
+	.my-favorites{
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+	.more{
+		margin-left: auto;
+		margin-right: auto;
+		display:block;
 	}
 	.my-stats{
 		margin-left: auto;
@@ -90,28 +95,6 @@
 	}
 	.form-holder{
 		text-align: center;
-	}
-	.more{
-		margin-left: auto;
-		margin-right: auto;
-		display:block;
-	}
-	.my-favorites{
-		margin-left: auto;
-		margin-right: auto;
-		text-align: center;
-	}
-	.my-div{
-		margin-left: auto;
-		margin-right: auto;
-		text-align: center;
-	}
-	#theDiv{
-		margin-left: auto;
-		margin-right: auto;
-		text-align: center;
-		display: flex;
-	    flex-wrap: wrap;
 	}
 	.clear-favorites{
 		margin: 0 auto;
@@ -123,9 +106,19 @@
 		display: flex;
 	    flex-wrap: wrap;
 	}
-	
+	#pokemonForm{
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#galleryDiv{
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		display: flex;
+	    flex-wrap: wrap;
+	}	
 }
 @media screen and (min-width: 769px) {
-  	#buttons-view { display: block;}
-	#buttons-toggle { display: none;}
+  	#buttonsView { display: block;}
+	#buttonsToggle { display: none;}
 }
