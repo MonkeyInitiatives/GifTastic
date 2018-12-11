@@ -20,6 +20,8 @@
 				myDiv.addClass("my-stats");
 				myDiv.append("<p>Name: " + capital_letter(response.name) + "</p>");
 				myDiv.append("<p>Number: "+response.id + "</p>");
+// 				cards?name=charizard&setCode=base1
+// 				myDiv.append("<img src='"+"https://api.pokemontcg.io/v1/cards?name="+capital_letter(response.name)+"&setCode=base1'>")
 			var theStats = $("<p>");
 			for (var key in response.stats) {
 				theStats.prepend("<p>"+capital_letter(response.stats[key].stat.name)+": "+response.stats[key].base_stat+"</p>");
@@ -64,6 +66,8 @@
 					myDiv.addClass("my-div");
 					myDiv.append("<p>Rating: " + response.data[key].rating.toUpperCase() + "</p>");
 					myDiv.append(theImage);
+// 					myDiv.append("<a class='button  btn-primary downloadButton' href='"+response.data[key].images.original.url+"' download='smile.gif'>Download</a>");
+					
 					$("#theDiv").append(myDiv);
 				}
 				$(".imageHover").unbind("click");
@@ -76,7 +80,7 @@
 					}
 					else{
 						var theImageHTML = $(this).attr("data-gif");
-					$(this).attr( "src", theImageHTML);  
+						$(this).attr( "src", theImageHTML);  
 					}
 				});
 				$(".imageHover").unbind("dblclick");
@@ -150,7 +154,6 @@
 		a.text("Expand");
 		$("#buttons-toggle").append(a);
 		$(".hide-buttons").on("click", function(event) {
-			console.log($(".hide-buttons").text());
 			event.preventDefault();
 			if($(".hide-buttons").text()==="Expand"){
 				$("#buttons-view").css("display", "block");
@@ -172,7 +175,19 @@
 	    	var contentsOfOldDiv = JSON.parse(localStorage["myKey"]);    
 			$(".my-favorites").html(contentsOfOldDiv);
 			$(".clear-favorites").show();
-			console.log("favorites exist");
+			$(".imageHover").unbind("click");
+			$(".imageHover").on("click", function(){
+				
+				if($(this).attr("src")===$(this).attr("data-gif"))
+				{
+					var theImageHTML = $(this).attr("data-still");
+					$(this).attr( "src", theImageHTML)
+				}
+				else{
+					var theImageHTML = $(this).attr("data-gif");
+				$(this).attr( "src", theImageHTML);  
+				}
+			});
 	    } 
 	    $(".clear-favorites").on("click", function(event) {
 			localStorage.clear();
