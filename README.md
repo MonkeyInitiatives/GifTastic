@@ -1,1 +1,19 @@
 # GifTastic
+
+### Overview
+Using a minimalist starting HTML file, this webpage relies upon JQUERY to generate a predetermined set of buttons based on the first 25 Pokemon (according to the PokeDex). A user is then given a few options. Firstly, a user can add their own Pokemon button by entering a text string and submitting it. The button is then added to the existing array of buttons. If a user clicks on a button, 10 gifs from GIPHY using their api load as still images. If a user does a single click on an image, the image will load the gif and begin to play. If a user double clicks an image, the image is saved to their favorites section, and is stored in localstorage for when a user leaves the page or refreshes it. If a user wishes to clear the favorites section, they may click the clear button to do so.
+
+### Notes
+I was able to spend a lot more time refactoring the code and making it look nice. I followed normal conventions for naming IDs and classes better than I have done in the past to make it more consistent throughout the document. It passes HTML validation, and works, I hope, according to the homework spec. The only bonus I did not complete was a 1 click download button. Some usage notes:
+
+1. Images are added to favorites by double clicking them. They remain there until all the favorites are cleared.
+
+2. Only valid Pokemon are allowed to be added as a button via user input. This only lets the first 151 Pokemon to be added. If a user tries to add an invalid Pokemon, they are notified that they are doing so and denied the ability to create a button. Similarly, an already existing Pokemon button cannot be added. Only Pokemon in this array may be added: 
+
+* "bulbasaur","ivysaur","venusaur","charmander","charmeleon","charizard","squirtle","wartortle","blastoise","caterpie","metapod","butterfree","weedle","kakuna","beedrill","pidgey","pidgeotto","pidgeot","rattata","raticate","spearow","fearow","ekans","arbok","pikachu","raichu","sandshrew","sandslash","nidoran","nidorina","nidoqueen","nidoran","nidorino","nidoking","clefairy","clefable","vulpix","ninetales","jigglypuff","wigglytuff","zubat","golbat","oddish","gloom","vileplume","paras","parasect","venonat","venomoth","diglett","dugtrio","meowth","persian","psyduck","golduck","mankey","primeape","growlithe","arcanine","poliwag","poliwhirl","poliwrath","abra","kadabra","alakazam","machop","machoke","machamp","bellsprout","weepinbell","victreebel","tentacool","tentacruel","geodude","graveler","golem","ponyta","rapidash","slowpoke","slowbro","magnemite","magneton","farfetch'd","doduo","dodrio","seel","dewgong","grimer","muk","shellder","cloyster","gastly","haunter","gengar","onix","drowzee","hypno","krabby","kingler","voltorb","electrode","exeggcute","exeggutor","cubone","marowak","hitmonlee","hitmonchan","lickitung","koffing","weezing","rhyhorn","rhydon","chansey","tangela","kangaskhan","horsea","seadra","goldeen","seaking","staryu","starmie","mr. mime","scyther","jynx","electabuzz","magmar","pinsir","tauros","magikarp","gyarados","lapras","ditto","eevee","vaporeon","jolteon","flareon","porygon","omanyte","omastar","kabuto","kabutops","aerodactyl","snorlax","articuno","zapdos","moltres","dratini","dragonair","dragonite","mewtwo","mew" *
+
+** If you need to check that the add button works, "mew" is an easy one, as well as "ditto". **
+
+3. A second API is being used to display information on the currently selected Pokemon, such as their stats, name, and Pokedex number.
+
+4. The app is mobile friendly and redesigns itself on smaller screens, auto-collapsing certain things and changing the order of elements. The only thing on mobile that does not work is the bonus of favorites because I could not figure out how to do double clicks on touch/mobile. 

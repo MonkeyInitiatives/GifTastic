@@ -19,8 +19,6 @@ function displayPokemonInfo(){
 			myDiv.addClass("my-stats");
 			myDiv.append("<p>Name: " + capitalize(response.name) + "</p>");
 			myDiv.append("<p>Number: "+response.id + "</p>");
-// 				cards?name=charizard&setCode=base1
-// 				myDiv.append("<img src='"+"https://api.pokemontcg.io/v1/cards?name="+capitalize(response.name)+"&setCode=base1'>")
 		var theStats = $("<p>");
 		for (var key in response.stats) {
 			theStats.prepend("<p>"+capitalize(response.stats[key].stat.name)+": "+response.stats[key].base_stat+"</p>");
@@ -58,7 +56,6 @@ function ajaxRequest(queryURL, theItem){
 				imageDiv.addClass("image-div");
 				imageDiv.append("<p>Rating: " + response.data[key].rating.toUpperCase() + "</p>");
 				imageDiv.append(theImage);
-// 					myDiv.append("<a class='button  btn-primary downloadButton' href='"+response.data[key].images.original.url+"' download='smile.gif'>Download</a>");
 				$("#galleryDiv").append(imageDiv);
 			}
 			$(".image-hover").unbind("click");
